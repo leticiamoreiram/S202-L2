@@ -1,6 +1,4 @@
 from Database import Database
-
-
 class ZoologicoDAO:
     def __init__(self):
         self.db = Database(database='zoologico', collection='animais')
@@ -11,34 +9,32 @@ class ZoologicoDAO:
 
         for habitat in animal.habitats:
             habitats = {
-                "Nome do habitat": habitat.nomeHabitat,
-                "Tipo de Ambiente": habitat.tipoAmbiente,
+                "nomeHabitat": habitat.nomeHabitat,
+                "tipoAmbiente": habitat.tipoAmbiente,
                 "Cuidador": {
-                    "Nome do Cuidador": habitat.cuidadorAmbiente.nomeCuidador,
-                    "Documento do Cuidador": habitat.cuidadorAmbiente.documento
+                    "nomeCuidador": habitat.cuidadorAmbiente.nomeCuidador,
+                    "documento": habitat.cuidadorAmbiente.documento
                 }
             }
             habitats.append(habitats)
-
         self.collection.insert_one({
-            "Nome do Animal": animal.nomeAnimal,
-            "Especie": animal.especie,
-            "Idade": animal.idade,
-            "Habitat": habitats
+            "nomeAnimal": animal.nomeAnimal,
+            "especie": animal.especie,
+            "idade": animal.idade,
+            "habitat": habitats
         })
         print(f"Animal {animal.nomeAnimal} criado com sucesso.")
 
-
     def read(self, verAnimal: str):
         print(f"Animal {verAnimal} buscado com sucesso.")
-        return self.collection.find({"Nome do Animal": verAnimal})
+        return self.collection.find({"nomeAnimal": verAnimal})
 
     def update(self, animalAlterado: str, novoNome: str):
         print(f"Animal {animalAlterado} atualizado com o nome {novoNome}.")
         return self.collection.update_one(
-            {"Nome do Animal": animalAlterado},
+            {"nomeAnimal": animalAlterado},
             {
-                "$set": {"Nome do Animal": novoNome}
+                "$set": {"nomeAnimal": novoNome}
             }
         )
 
