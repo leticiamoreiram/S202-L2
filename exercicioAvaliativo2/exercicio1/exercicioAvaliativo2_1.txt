@@ -1,0 +1,17 @@
+Letícia Moreira Mendes	1705	GEC
+Exercício Avaliativo 02 - Neo 4J
+
+Exercício 01: Buscas e Operações Básicas
+
+- Quem é amigo de Bob?
+R: MATCH (b:Usuario {nome: 'Bob'})-[:AMIGO]-(amigo)
+   RETURN amigo.nome
+
+- Quem postou a 'Postagem 2'?
+R: MATCH (p:Postagem {titulo: 'Memórias da Tarde'})<-[:POSTOU]-(autor)
+RETURN autor.nome
+
+- Quem tem mais de 35 anos e fez uma postagem?
+R: MATCH (u:Usuario)-[:POSTOU]->(p:Postagem)
+   WHERE u.idade > 35
+   RETURN u.nome

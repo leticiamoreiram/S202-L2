@@ -1,0 +1,19 @@
+Letícia Moreira Mendes	1705	GEC
+Exercício Avaliativo 02 - Neo 4J
+
+Exercício 02: Funções Neo4j
+
+- Encontre o usuário mais velho.
+R: MATCH (u:Usuario)
+   RETURN u
+   ORDER BY u.idade DESC
+   LIMIT 1
+
+- Quantos usuários têm mais de 30 anos?
+R: MATCH (u:Usuario)
+   WHERE u.idade > 30
+   RETURN COUNT(u) AS total
+
+- Qual é a média de idade dos usuários?
+R: MATCH (u:Usuario)
+   RETURN AVG(u.idade) 
